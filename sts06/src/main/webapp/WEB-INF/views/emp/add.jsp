@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>입력 페이지</h1>
+	<h1>insert page</h1>
 	<form method="post">
 		<div>
 			<label for="name">name</label>
