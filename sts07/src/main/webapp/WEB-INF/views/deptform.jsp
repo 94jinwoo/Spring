@@ -1,5 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="utf-8"%>
 <c:url value="/" var="root"></c:url>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,14 @@
 	<script type="text/javascript" src="${root }resources/js/bootstrap.js"></script>
 </head>
 <body>
+<c:if test="${bean ne null }">
+	<c:if test="${bean.deptno == 0 }">
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong>Error!</strong> dname를 반드시 입력하세요
+	</div>
+	</c:if>
+</c:if>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,8 +40,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ">
-        <li class="active"><a href="${root }">HOME <span class="sr-only">(current)</span></a></li>
-        <li class="dropdown">
+        <li ><a href="${root }">HOME <span class="sr-only">(current)</span></a></li>
+        <li class="active dropdown">
         	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DEPT <span class="caret"></span></a>
         	<ul class="dropdown-menu">
         		<li><a href="${root }dept/list">LIST</a></li>
@@ -55,59 +64,44 @@
 <!-- meun end -->
 <!-- content start -->
 <div class="container">
-
 	<div class="row">
 		<div class="col-md-12">
-		<!-- carousel start -->
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		  </ol>
-		
-		  <!-- Wrapper for slides -->
-		  <div class="carousel-inner" role="listbox">
-		    <div class="item active">
-		      <img src="resources/imgs/big01.jpg" alt="...">
-		       <div class="carousel-caption">
-			    <h3>big</h3>
-			    <p>01</p>
-			  </div>
-		    </div>
-		    <div class="item">
-		      <img src="resources/imgs/big02.jpg" alt="...">
-		       <div class="carousel-caption">
-			    <h3>big</h3>
-			    <p>02</p>
-			  </div>
-		    </div>
-		    <div class="item">
-		      <img src="resources/imgs/big03.jpg" alt="...">
-		       <div class="carousel-caption">
-			    <h3>big</h3>
-			    <p>03</p>
-			  </div>
-		    </div>
-		  </div>
-		
-		  <!-- Controls -->
-		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
-		</div>
-		<!-- carousel end -->	
+			<div class="jumbotron">
+			  <h1>DEPT TABLE</h1>
+			  <p><a class="btn btn-primary btn-lg" href="#" role="button">버튼</a></p>
+			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-		
+			<h1>${title }페이지</h1>
+			<form class="form-horizontal" action="${action }" method="${method }">
+			<c:if test="${title ne '입력' }">
+			  <div class="form-group">
+			    <label for="deptno" class="col-sm-2 control-label">deptno</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="deptno" id="deptno" placeholder="deptno" value="${bean.deptno }" readonly="readonly">
+			    </div>
+			  </div>
+			</c:if>
+			  <div class="form-group">
+			    <label for="dname" class="col-sm-2 control-label">DNAME</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="dname" id="dname" placeholder="dname" value="${bean.dname }" ${disabled }>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="loc" class="col-sm-2 control-label">LOC</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="loc" id="loc" placeholder="loc" value="${bean.loc }" ${disabled }>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-primary">${btn1 }</button>
+			    </div>
+			  </div>
+			</form>
 		</div>
 	</div>
 </div>
